@@ -40,8 +40,7 @@ export default {
   },
   methods: {
     switchColorMode(value) {
-      console.log(this.colorMode);
-      console.log(this.$colorMode.preference);
+   
       this.$store.commit("switchColorMode", value);
 
       if (this.colorMode === true) {
