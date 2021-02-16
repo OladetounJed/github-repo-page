@@ -60,17 +60,7 @@ export default {
     this.getUserProfile();
     this.getUserRepositories();
   },
-  // created() {
-  //   if (this.$colorMode.preference === "dark") {
-  //     this.switchColorMode(true);
-  //     this.colorMode = true;
-  //   } else {
-  //     this.switchColorMode(false);
-  //     this.colorMode = false;
-  //   }
-  //   console.log(this.colorMode)
-  //   console.log(this.$colorMode.preference)
-  // },
+
   computed: {
     darkMode() {
       return this.$store.getters.getDarkMode;
