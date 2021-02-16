@@ -47,7 +47,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       this.$axios
         .$get(`/users/oladetounjed/repos`)
-        .then((response, headers) => {
+        .then((response) => {
           resolve(response);
         
         })
@@ -60,7 +60,7 @@ export const actions = {
     return new Promise((resolve, reject) => {
       this.$axios
         .$get(`/search/repositories?q=${payload}user:oladetounjed`)
-        .then((response, headers) => {
+        .then((response) => {
           resolve(response);
        
         })
