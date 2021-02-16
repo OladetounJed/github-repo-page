@@ -548,3 +548,14 @@ Desktop Navigation Menu
     margin: 0;
   }
 }
+
+
+/* Extreme small devices (phones, 400px and down) */
+@media only screen and (max-width: 400px) {
+ .profile__name {
+   font-size: 1.2em;
+ }
+ .profile__details {
+   font-size: .8em;
+ }
+}
