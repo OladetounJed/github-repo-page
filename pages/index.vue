@@ -20,6 +20,7 @@ export default {};
         </form>
 
         <div class="repositories__con">
+          <h3 class="repository__empty-state" v-if="repositories.length < 1 && isFectched">OladetounJed doesn’t have any repositories that match.</h3>
           <div
             class="repository"
             v-for="repository in repositories"
@@ -44,6 +45,7 @@ export default {};
         </div>
       </div>
     </div>
+    <AppLoader v-if="isWorking"/>
   </div>
 </template>
 
@@ -53,12 +55,23 @@ export default {
     return {
       colorMode: true,
       repositories: [],
-      searchKey: ""
+      searchKey: "",
+      isFectched: false,
+      isWorking : false,
     };
   },
   mounted() {
     this.getUserProfile();
     this.getUserRepositories();
+  },
+
+  watch: {
+    searchKey(){
+      if(this.searchKey === ""){
+        this.getUserRepositories()
+      }
+    }
+
   },
 
   computed: {
@@ -86,6 +99,8 @@ export default {
         .dispatch("getUserRepositories")
         .then(response => {
           this.repositories = response;
+          this.isFectched = true
+          this.isWorking = false
        
         })
         .catch(error => {
@@ -96,10 +111,12 @@ export default {
     
       this.isWorking = true;
       this.$store
-        .dispatch("getUserRepositories")
+        .dispatch("searchUserRepositories", this.searchKey)
         .then(response => {
-          this.repositories = response;
-          console.log(response);
+          this.repositories = response.items;
+            this.isFectched = true
+             this.isWorking = false
+         
         })
         .catch(error => {
           this.isWorking = false;

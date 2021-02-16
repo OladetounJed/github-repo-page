@@ -49,11 +49,25 @@ export const actions = {
         .$get(`/users/oladetounjed/repos`)
         .then((response, headers) => {
           resolve(response);
-         console.log(headers)
+        
         })
         .catch(error => {
           reject(error);
         });
     });
-  }
+  },
+  searchUserRepositories(commit , payload) {
+    return new Promise((resolve, reject) => {
+      this.$axios
+        .$get(`/search/repositories?q=${payload}user:oladetounjed`)
+        .then((response, headers) => {
+          resolve(response);
+       
+        })
+        .catch(error => {
+          reject(error);
+        });
+    });
+  },
+
 };
